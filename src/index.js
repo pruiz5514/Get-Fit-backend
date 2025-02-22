@@ -6,14 +6,16 @@ import './database/models/rutine.model.js'
 import './database/models/rutineExercise.mode.js'
 import './database/models/progress.model.js'
 import './database/models/index.js'
+import { routerApi } from './routes/index.js';
+import errorHandler from './middleware/error.handler.js';
 
 const app = express()
 const PORT  = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-    res.json({message: 'oeee'})
-})
+app.use(express.json());
+routerApi(app);
 
+app.use(errorHandler);
 
 const main = async () => {
     try{
@@ -27,4 +29,5 @@ const main = async () => {
     }
 }
 
-main()
+main();
+
