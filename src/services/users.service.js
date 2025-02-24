@@ -1,6 +1,7 @@
 import { ValidationError } from "sequelize";
 import { Users } from "../database/models/user.model.js";
 import BaseService from "./base.service.js";
+import bcrypt from 'bcrypt'
 
 class UsersService extends BaseService{
     constructor(){
@@ -17,7 +18,13 @@ class UsersService extends BaseService{
         if(existingUsername){
             throw new ValidationError('Username already resgistered')
         }
-        return super.create(data);
+
+        const newUser = {
+            email: data.email,
+            username: data.username,
+            password: await bcrypt.hash(data.password, 10)
+        }
+        return super.create(newUser);
     }
 
 }
