@@ -1,6 +1,7 @@
 import express from 'express';
 import userRouter from './users.router.js'
 import authRouter from './auth.router.js'
+import routineRouter from './routines.router.js'
 
 
 export function routerApi(app) {
@@ -8,4 +9,5 @@ export function routerApi(app) {
     app.use('/api/v1', router);
     router.use('/users', userRouter);
     router.use('/auth', authRouter)
+    router.use('/routines', routineRouter)
 }

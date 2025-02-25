@@ -8,7 +8,7 @@ export const Progress = sequelize.define('progress', {
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    id_rutine: {
+    id_routine: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {

@@ -1,23 +1,22 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../sequelize.js";
 import { Users } from "./user.model.js";
-import { Rutines } from "./rutine.model.js";
 
-export const RutineExercises = sequelize.define('rutine_exercises', {
+export const Routines = sequelize.define('routines', {
     id:{
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    exercise_id: {
+    name: {
         allowNull: false,
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
-    id_rutine: {
+    id_user: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: Rutines,
+            model: Users,
             key: 'id'
         }
     }

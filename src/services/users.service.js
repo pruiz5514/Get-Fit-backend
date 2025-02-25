@@ -2,6 +2,7 @@ import { ValidationError } from "sequelize";
 import { Users } from "../database/models/user.model.js";
 import BaseService from "./base.service.js";
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 class UsersService extends BaseService{
     constructor(){
@@ -25,6 +26,25 @@ class UsersService extends BaseService{
             password: await bcrypt.hash(data.password, 10)
         }
         return super.create(newUser);
+    }
+
+    async login(data){
+        const user = await this.model.findOne({where: {email: data.email}});
+        if(!user){
+             throw { status: 401, message: 'Invalid credentials' };
+        }
+
+        const validPassword = await bcrypt.compare(data.password, user.password)
+        if(!validPassword){
+             throw { status: 401, message: 'Invalid credentials' };
+        }
+
+        const token = jwt.sign({
+            exp: Math.floor(Date.now() / 1000) + 60 * 60,
+            id: user.id, 
+        }, process.env.JWT_KEY)
+
+        return {user, token}
     }
 
 }

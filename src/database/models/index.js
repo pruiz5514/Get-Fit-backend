@@ -1,13 +1,13 @@
 import { Users } from "./user.model.js";
-import { Rutines } from "./rutine.model.js";
-import { RutineExercises } from "./rutineExercise.mode.js";
 import { Progress } from "./progress.model.js";
+import { Routines } from "./routine.model.js";
+import { RoutineExercises } from "./routineExercise.model.js";
 
-Users.hasMany(Rutines, { foreignKey: 'id_user' });
-Rutines.belongsTo(Users, { foreignKey: 'id_user'});
+Users.hasMany(Routines, { foreignKey: 'id_user' });
+Routines.belongsTo(Users, { foreignKey: 'id_user'});
 
-Rutines.hasMany(RutineExercises, {foreignKey: 'id_rutine'})
-RutineExercises.belongsTo(Rutines, {foreignKey: 'id_rutines'});
+Routines.hasMany(RoutineExercises, {foreignKey: 'id_routine'})
+RoutineExercises.belongsTo(Routines, {foreignKey: 'id_routine'});
 
 Users.hasMany(Progress, { foreignKey: 'id_user' });
 Progress.belongsTo(Users, { foreignKey: 'id_user'});
