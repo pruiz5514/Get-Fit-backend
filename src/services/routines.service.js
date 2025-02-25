@@ -1,5 +1,6 @@
 
 import { Routines } from "../database/models/routine.model.js";
+import { RoutineExercises } from "../database/models/routineExercise.model.js";
 import BaseService from "./base.service.js";
 
 class routinesService extends BaseService{
@@ -13,6 +14,23 @@ class routinesService extends BaseService{
             throw {status: 404, message: 'No routines found'}
         }
         return routinesByUser
+    }
+
+    async findOne(routineId){
+        const routine = await this.model.findByPk(routineId, {
+            include: [
+                {
+                    model: RoutineExercises,
+                    as: 'routine_exercises'
+                }
+            ]
+        })
+
+        if (!routine) {
+            throw { status: 404, message: "Routine not found" };
+        }
+
+        return routine
     }
 
     async create(data){

@@ -20,6 +20,19 @@ router.get('/',
         }
 });
 
+router.get('/:id',
+    tokenHandler,
+    async(req, res, next) => {
+        try{
+            const { id } = req.params
+            const routine = await service.findOne(id)
+            return res.status(200).json(routine)
+        } catch(error){
+            next(error)
+        }
+    }
+)
+
 router.post('/',
     validatorHandler(routineSchema),
     tokenHandler,
