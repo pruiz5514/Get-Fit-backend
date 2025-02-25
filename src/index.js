@@ -4,7 +4,7 @@ import { sequelize } from './database/sequelize.js';
 import './database/models/user.model.js'
 import './database/models/routine.model.js'
 import './database/models/routineExercise.model.js'
-import './database/models/progress.model.js'
+import './database/models/series.model.js'
 import './database/models/index.js'
 import { routerApi } from './routes/index.js';
 import errorHandler from './middleware/error.handler.js';

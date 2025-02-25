@@ -1,28 +1,20 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../sequelize.js";
-import { Users } from "./user.model.js";
+import { Sessions } from "./session.model.js";
 
-export const Progress = sequelize.define('progress', {
+export const Series = sequelize.define('series', {
     id:{
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    id_routine: {
+    id_session: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: Users,
+            model: Sessions,
             key: 'id'
         }
-    },
-    id_exercise: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-    },
-    date: {
-        allowNull: false,
-        type: DataTypes.DATE        
     },
     repeats:{
         allowNull: false,
@@ -34,5 +26,5 @@ export const Progress = sequelize.define('progress', {
     }
 },{
     timestamps: false,
-    tableName:'progress'
+    tableName:'series'
 })
