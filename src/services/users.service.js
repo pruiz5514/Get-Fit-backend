@@ -40,7 +40,7 @@ class UsersService extends BaseService{
         }
 
         const token = jwt.sign({
-            exp: Math.floor(Date.now() / 1000) + 60 * 60,
+            exp: (Math.floor(Date.now() / 1000) + 60 * 60) * 2,
             id: user.id, 
         }, process.env.JWT_KEY)
 

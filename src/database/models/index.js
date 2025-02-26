@@ -13,5 +13,5 @@ RoutineExercises.belongsTo(Routines, {foreignKey: 'id_routine'});
 Users.hasMany(Sessions, { foreignKey: 'id_user' });
 Sessions.belongsTo(Users, { foreignKey: 'id_user'});
 
-Sessions.hasMany(Series, {foreignKey: 'id_session'});
-Series.belongsTo(Sessions, {foreignKey: 'id_session'})
+Sessions.hasMany(Series, { foreignKey: 'id_session' });
+Series.belongsTo(Sessions, { foreignKey: 'id_session'});

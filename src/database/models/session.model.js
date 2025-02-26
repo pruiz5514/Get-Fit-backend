@@ -26,5 +26,4 @@ export const Sessions = sequelize.define('sessions', {
     }
 },{
     timestamps: false,
-    // tableName:'progress'
 })

@@ -1,13 +1,15 @@
 import express from 'express';
 import { sequelize } from './database/sequelize.js';
+import { routerApi } from './routes/index.js';
+import errorHandler from './middleware/error.handler.js';
 
 import './database/models/user.model.js'
 import './database/models/routine.model.js'
 import './database/models/routineExercise.model.js'
+import './database/models/session.model.js'
 import './database/models/series.model.js'
 import './database/models/index.js'
-import { routerApi } from './routes/index.js';
-import errorHandler from './middleware/error.handler.js';
+
 
 const app = express()
 const PORT  = process.env.PORT || 3000;
