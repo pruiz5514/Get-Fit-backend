@@ -12,12 +12,12 @@ class UsersService extends BaseService{
     async create(data){
         const existingEmail = await this.model.findOne({where: {email: data.email}});
         if(existingEmail){
-            throw new ValidationError('Email already resgistered')
+            throw new ValidationError('El correo electronico ya se encuentra registrado')
         }
 
         const existingUsername = await this.model.findOne({where: {username: data.username}});
         if(existingUsername){
-            throw new ValidationError('Username already resgistered')
+            throw new ValidationError('El nombre de usuario ya se encuentra registrado')
         }
 
         const newUser = {
@@ -31,12 +31,12 @@ class UsersService extends BaseService{
     async login(data){
         const user = await this.model.findOne({where: {email: data.email}});
         if(!user){
-             throw { status: 401, message: 'Invalid credentials' };
+             throw { status: 401, message: 'Credenciales invalidas' };
         }
 
         const validPassword = await bcrypt.compare(data.password, user.password)
         if(!validPassword){
-             throw { status: 401, message: 'Invalid credentials' };
+             throw { status: 401, message: 'Credenciales invalidas' };
         }
 
         const token = jwt.sign({

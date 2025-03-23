@@ -13,8 +13,10 @@ router.post('/register',
         try{
             const body = req.body;
             const newUser = await service.create(body)
+            const { password,updatedAt,createdAt, ...userWithoutPassword } = newUser.dataValues;
             return res.status(201).json({
                 message:'`User succesfully created`',
+                user: userWithoutPassword
             })
         } catch(error){
             next(error)
