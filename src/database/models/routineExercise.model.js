@@ -10,7 +10,7 @@ export const RoutineExercises = sequelize.define('routine_exercises', {
     },
     exercise_id: {
         allowNull: false,
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     id_routine: {
         type: DataTypes.INTEGER,

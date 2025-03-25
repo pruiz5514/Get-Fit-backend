@@ -44,10 +44,16 @@ router.post('/',
                 name: body.name,
                 id_user: userId
             }
-            await service.create(newRoutine);
-            return res.status(201).json({message: 'Routine succesfully created'})
+            const createdRoutine = await service.create(newRoutine);
+            return res.status(201).json({
+                message: 'Routine successfully created',
+                routine: {
+                    id: createdRoutine.id, 
+                    name: createdRoutine.name
+                }
+            });
         } catch(error){
-            next()
+            next(error)
         }
     }
 )

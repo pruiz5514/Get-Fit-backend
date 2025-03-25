@@ -16,7 +16,7 @@ router.post('/',
             await service.create(body)
             return res.status(201).json({message: 'Exercise succesfully added to the routine'})
         } catch(error){
-            next()
+            next(error)
         }
     }
 )
