@@ -11,13 +11,13 @@ class routineExerciseService extends BaseService{
         if (Array.isArray(data.exercise_id)) {
             const formattedData = data.exercise_id.map(id => ({
                 id_routine: data.id_routine,
-                exercise_id: String(id) 
+                exercise_id: id 
             }));
     
             return await this._processArrayData(formattedData);
         } 
         else {
-            data.exercise_id = String(data.exercise_id); 
+            data.exercise_id = data.exercise_id; 
             return await this._processSingleData(data);
         }
     }
